@@ -9,15 +9,14 @@ class ModelBase:
 
     def __init__(self):
         self.const = const
-        self.path_link_file = self.const.FOLDER_DATA + self.const.FILE_LINK_SAVING
 
-    def get_content_data(self):
-        """Donne les données sauvegarder dans le fichiers des liens 
+    def get_content_data(self, path: str):
+        """Donne les données sauvegarder dans le fichier données 
         Returns:
             dict: contenue du fichier 
         """
-
-        if Path(self.path_link_file).exists():
-            with open(self.path_link_file) as f:
-                return json.loads(self.path_link_file)
+        
+        if Path(path).exists():
+            with open(path) as f:
+                return json.loads(path)
 
