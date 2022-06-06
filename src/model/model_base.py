@@ -1,5 +1,5 @@
 import json
-import constant
+import src.model.constant as const
 
 from pathlib import Path
 
@@ -8,11 +8,10 @@ class ModelBase:
     """Classe model de base, cette classe sera heriter des enfants model."""
     
     def __init__(self):
-        self.const = constant
+        self.const = const
 
     def get_content_data(self):
         """Donne les données sauvegarder dans le fichiers des liens 
-
         Returns:
             dict: contenue du fichier 
         """
