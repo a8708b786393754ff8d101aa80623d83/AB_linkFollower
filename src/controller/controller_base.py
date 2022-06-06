@@ -13,10 +13,14 @@ class ControllerBase:
         }
 
     def requests_link(self, url: str):
-        r = requests.get(url)
-        if r.ok:
-            self.data['url'] = url  # type: ignore
-            return r
+        try:
+            r = requests.get(url)
+        except requests.exceptions.ConnectionError:
+            return None
+        else:
+            if r.ok:
+                self.data['url'] = url  # type: ignore
+                return r
 
     def is_link(self, url: str):
         """Determine si un element est un lien. 
@@ -26,5 +30,5 @@ class ControllerBase:
         Returns: 
             bool: True si c'est un lien. False si ce n'est pas un lien
         """
-        
+
         return re.search("^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$", url)
