@@ -1,7 +1,7 @@
 #! /usr/local/bin/python3.10
-from  src.model import model_base as m 
-from  src.view import view_base as v 
-from  src.controller import controller_base as c 
+from src.controller import controller_link as c
+from src.model import model_link as m
+from src.view import view_base as v
 
 """
     FAIRE UN SCRIPT QUI SUIS UN LIEN EST QUI SUIS LES LIEN QUI EST DANS LE LIEN
@@ -14,8 +14,9 @@ from  src.controller import controller_base as c
     3: il identifie les liens qui appartient a cette page
     4: il parcour les liens est ainsi de suite 
 """
+url = 'https://ecurie-des-4-chemins.fr/'
 
-controller = c.ControllerBase(m.ModelBase, v.ViewBase)
+controller = c.ControllerLink(m.ModelBase, v.ViewBase)
 
-if not controller.requests_link('https://mail.google.com/mail/u/0/#inbox') is None: 
-    print('lien ok')
+if not controller.requests_link(url) is None:
+    print(controller.get_links(url))
