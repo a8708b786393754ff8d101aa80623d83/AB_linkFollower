@@ -7,10 +7,7 @@ class ControllerLink(ControllerBase):
     def __init__(self, model, view):
         super().__init__(model, view)
         
-    def is_script(self, content): 
-        return content.get('type') == 'text/javascript'
-        
-
+    
     def get_links_css(self, url: str):
         resp = self.requests_link(url)
         if not resp is None:
