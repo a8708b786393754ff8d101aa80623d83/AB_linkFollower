@@ -1,4 +1,3 @@
-import requests
 from bs4 import BeautifulSoup
 
 from .controller_base import ControllerBase
@@ -7,6 +6,10 @@ from .controller_base import ControllerBase
 class ControllerLink(ControllerBase):
     def __init__(self, model, view):
         super().__init__(model, view)
+        
+    def is_script(self, content): 
+        return content.get('type') == 'text/javascript'
+        
 
     def get_links_css(self, url: str):
         resp = self.requests_link(url)
@@ -32,10 +35,15 @@ class ControllerLink(ControllerBase):
         """
 
     def get_links(self, url: str):
-        data = []
-        data.append(self.get_links_css(url))
-        data.append(self.get_links_img(url))
-        data.append(self.get_links_js(url))
-        data.append(self.get_links_tag_a(url))
+        data = {
+            'css' : None, 
+            'img': None,
+            'js': None, 
+            'a': None    
+        }
         
-        return data
+        data['css'] = self.get_links_css(url) # type: ignore
+        data['img'] = self.get_links_img(url) # type: ignore
+        data['js'] = self.get_links_js(url) # type: ignore
+        data['a'] = self.get_links_tag_a(url) # type: ignore
+        
