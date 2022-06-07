@@ -1,4 +1,4 @@
-import json 
+import json
 from .model_base import ModelBase
 
 
@@ -10,3 +10,8 @@ class ModelLink(ModelBase):
     def save_links(self, data: dict):
         with open(self.path_link_file, 'w') as f:
             json.dump(data, f)
+
+    def is_script(self, content):
+        return content.get('type') == 'text/javascript'
+
+        
