@@ -13,7 +13,7 @@ class ModelLink(ModelBase):
             json.dump(data, f)
 
     def is_script(self, content):
-        return content.get('type') == 'text/javascript'
+        return content.get('type') == 'text/javascript' and content.get('src') is None 
 
     def is_link_internal(self, url: str):
         if url.startswith('/'):
@@ -25,7 +25,6 @@ class ModelLink(ModelBase):
         except:
             pass  # trouver quelle erruer extactement
         else:
-            url_base = ''
             for prefix in self.const.ARRAY_CLASSES_HTML:
                 # regarde si le pattern(url) contient le prefix
                 if not re.match(pattern, prefix):
