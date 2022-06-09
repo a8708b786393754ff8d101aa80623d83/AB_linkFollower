@@ -15,3 +15,6 @@ class ModelLink(ModelBase):
     def is_script(self, content):
         return content.get('type') == 'text/javascript'
     
+    def is_link_internal(self, url: str):
+        if url.startswith('/'):
+            return True
