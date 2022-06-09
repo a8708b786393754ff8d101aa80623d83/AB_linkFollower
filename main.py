@@ -16,7 +16,9 @@ from src.view import view_base as v
 """
 url = 'https://ecurie-des-4-chemins.fr/'
 
-controller = c.ControllerLink(m.ModelBase, v.ViewBase)
+controller = c.ControllerLink(m.ModelLink, v.ViewBase)
 
 if not controller.requests_link(url) is None:
-    print(controller.get_links(url))
+    for keys, links in controller.get_links(url).items(): 
+        for link in links: # type: ignore
+            print(controller.model.get_url_base(link))

@@ -44,3 +44,5 @@ class ControllerLink(ControllerBase):
         data['js'] = self.get_links_js(url) # type: ignore
         data['a'] = self.get_links_tag_a(url) # type: ignore
         
+        return data 
+        
