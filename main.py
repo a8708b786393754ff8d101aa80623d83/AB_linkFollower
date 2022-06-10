@@ -20,9 +20,13 @@ controller = c.ControllerLink(m.ModelLink, v.ViewBase)
 view = v.ViewLink()
 
 if not controller.requests_link(url) is None:
-    for keys, links in controller.get_links(url).items(): 
-        for link in links: # type: ignore
-            if not controller.model.is_script(link): # si c'est pas un script javascript 
-                controller.model.get_url_base(link)
-            else: # si c'est un lien 
+    for keys, links in controller.get_links(url).items():
+        for link in links:  # type: ignore
+            if controller.model.is_script(link):
                 view.script_javascript(link)
+            else:
+                link_base = controller.model.get_url_base(link)
+                if controller.is_link(link_base):
+                    view.link_internal(link)
+                else:
+                    view.link_external(link)
