@@ -22,6 +22,6 @@ if not controller.requests_link(url) is None:
     for keys, links in controller.get_links(url).items(): 
         for link in links: # type: ignore
             if not controller.model.is_script(link): # si c'est pas un script javascript 
-                controller.model.get_url_base(link)
+                print(controller.model.get_url_base(link))
             else: # si c'est un lien 
                 print(link)
