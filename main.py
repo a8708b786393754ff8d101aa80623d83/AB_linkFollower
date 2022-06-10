@@ -1,7 +1,7 @@
 #! /usr/local/bin/python3.10
 from src.controller import controller_link as c
 from src.model import model_link as m
-from src.view import view_base as v
+from src.view import view_link as v
 
 """
     FAIRE UN SCRIPT QUI SUIS UN LIEN EST QUI SUIS LES LIEN QUI EST DANS LE LIEN
@@ -17,6 +17,7 @@ from src.view import view_base as v
 url = 'https://ecurie-des-4-chemins.fr/'
 
 controller = c.ControllerLink(m.ModelLink, v.ViewBase)
+view = v.ViewLink()
 
 if not controller.requests_link(url) is None:
     for keys, links in controller.get_links(url).items(): 
@@ -24,4 +25,4 @@ if not controller.requests_link(url) is None:
             if not controller.model.is_script(link): # si c'est pas un script javascript 
                 controller.model.get_url_base(link)
             else: # si c'est un lien 
-                print(link)
+                view.script_javascript(link)
