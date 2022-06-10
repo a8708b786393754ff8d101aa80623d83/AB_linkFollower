@@ -13,7 +13,7 @@ class ModelLink(ModelBase):
             json.dump(data, f)
 
     def is_script(self, content):
-        return content.get('type') == 'text/javascript' and content.get(' src') is None 
+        return content.get('type') == 'text/javascript' and content.get('src') is None 
 
     def is_link_internal(self, url: str):
         if url.startswith('/'):
