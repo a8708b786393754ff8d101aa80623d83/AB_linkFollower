@@ -29,3 +29,12 @@ class ViewLink(ViewBase):
     def link_mail(self, link): 
         self.mail += 1 
         print(self.fore.CYAN, link, self.fore.RESET)
+        
+    def stats(self): 
+        print(self.back.LIGHTMAGENTA_EX, 
+            self.fore.GREEN,'tel:',self.tel,
+            self.fore.CYAN,'mail:',self.mail,
+            self.fore.YELLOW,'script:',self.script,
+            self.fore.RED,'internal:',self.internal, 
+            self.fore.BLUE,'external:',self.external
+            )
