@@ -38,3 +38,5 @@ if not controller.requests_link(url) is None:
 
                 elif not controller.model.is_link_external(link_base) is None:
                     view.link_external(link_base)
+
+view.stats()
