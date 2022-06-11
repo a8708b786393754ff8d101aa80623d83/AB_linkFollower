@@ -33,7 +33,7 @@ class ControllerLink(ControllerBase):
 
         """faire une methode qui identifie a qui appartient les liens 
         """
-
+        
     def get_links(self, url: str):
         data = {
             'css': None,
@@ -48,3 +48,8 @@ class ControllerLink(ControllerBase):
         data['a'] = self.get_links_tag_a(url)  # type: ignore
 
         return data
+
+    def get_mail(self, link_base: str): 
+        return link_base.startswith(self.model.const[1])
+    
+    
