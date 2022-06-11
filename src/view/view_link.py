@@ -15,7 +15,7 @@ class ViewLink(ViewBase):
         print(self.fore.YELLOW, script, self.fore.RESET)
 
     def link_tel(self, link_base): 
-        print(self.fore.YELLOW, link_base, self.fore.RESET)
+        print(self.fore.GREEN, link_base, self.fore.RESET)
         
     def link_mail(self, link): 
-        print(self.fore.YELLOW, link, self.fore.RESET)
+        print(self.fore.CYAN, link, self.fore.RESET)
