@@ -37,6 +37,12 @@ class ModelLink(ModelBase):
             return url.split('tel:')[1]
         
         return False 
+    
+    def is_mail(self, url: str): 
+        if url.startswith('mailto:'): 
+            return url.split('mailto:')[1]
+        
+        return False 
 
     def get_url_base(self, url):
         try:
