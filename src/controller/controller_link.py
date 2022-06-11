@@ -1,3 +1,4 @@
+from urllib.parse import unquote
 from bs4 import BeautifulSoup
 
 from .controller_base import ControllerBase
@@ -6,6 +7,9 @@ from .controller_base import ControllerBase
 class ControllerLink(ControllerBase):
     def __init__(self, model, view):
         super().__init__(model, view)
+
+    def decode_url(self, url: str): 
+        return unquote(url)
 
     def get_links_css(self, url: str):
         resp = self.requests_link(url)
