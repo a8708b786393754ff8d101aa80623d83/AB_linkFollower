@@ -13,11 +13,23 @@ class ModelLink(ModelBase):
             json.dump(data, f)
 
     def is_script(self, content):
-        return content.get('type') == 'text/javascript' and content.get('src') is None 
+        return content.get('type') in self.const.ARRAY_TYPE_SCRIPT and content.get('src') is None and content.name == 'script'
+            
 
     def is_link_internal(self, url: str):
-        if url.startswith('/'):
-            return True
+        return  url.startswith('/') or not self.is_link_external(url) 
+    
+    def is_link_external(self, url: str): 
+        """Determine si un element est un lien. 
+        Args: 
+            url(str): lien 
+
+        Returns: 
+            bool: True si c'est un lien. False si ce n'est pas un lien
+        """
+        
+        return re.search('https?:\/\/', str(url))
+
 
     def get_url_base(self, url):
         try:
