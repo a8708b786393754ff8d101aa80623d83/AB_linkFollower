@@ -15,8 +15,7 @@ class ModelBase:
         Returns:
             dict: contenue du fichier 
         """
-        
+
         if Path(path).exists():
             with open(path) as f:
                 return json.loads(path)
-

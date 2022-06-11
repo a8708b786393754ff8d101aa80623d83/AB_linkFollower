@@ -6,8 +6,7 @@ from .controller_base import ControllerBase
 class ControllerLink(ControllerBase):
     def __init__(self, model, view):
         super().__init__(model, view)
-        
-    
+
     def get_links_css(self, url: str):
         resp = self.requests_link(url)
         if not resp is None:
@@ -33,16 +32,15 @@ class ControllerLink(ControllerBase):
 
     def get_links(self, url: str):
         data = {
-            'css' : None, 
+            'css': None,
             'img': None,
-            'js': None, 
-            'a': None    
+            'js': None,
+            'a': None
         }
-        
-        data['css'] = self.get_links_css(url) # type: ignore
-        data['img'] = self.get_links_img(url) # type: ignore
-        data['js'] = self.get_links_js(url) # type: ignore
-        data['a'] = self.get_links_tag_a(url) # type: ignore
-        
-        return data 
-        
+
+        data['css'] = self.get_links_css(url)  # type: ignore
+        data['img'] = self.get_links_img(url)  # type: ignore
+        data['js'] = self.get_links_js(url)  # type: ignore
+        data['a'] = self.get_links_tag_a(url)  # type: ignore
+
+        return data

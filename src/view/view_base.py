@@ -1,6 +1,6 @@
-from  colorama import Fore 
+from colorama import Fore
 
-class ViewBase: 
+
+class ViewBase:
     def __init__(self):
         self.fore = Fore
-        
