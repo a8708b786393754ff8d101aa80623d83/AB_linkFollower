@@ -1,3 +1,4 @@
+from urllib.parse import unquote
 from bs4 import BeautifulSoup
 
 from .controller_base import ControllerBase
@@ -6,6 +7,9 @@ from .controller_base import ControllerBase
 class ControllerLink(ControllerBase):
     def __init__(self, model, view):
         super().__init__(model, view)
+
+    def decode_url(self, url: str): 
+        return unquote(url)
 
     def get_links_css(self, url: str):
         resp = self.requests_link(url)
@@ -29,7 +33,7 @@ class ControllerLink(ControllerBase):
 
         """faire une methode qui identifie a qui appartient les liens 
         """
-
+        
     def get_links(self, url: str):
         data = {
             'css': None,
@@ -44,3 +48,9 @@ class ControllerLink(ControllerBase):
         data['a'] = self.get_links_tag_a(url)  # type: ignore
 
         return data
+
+    def get_mail(self, link_base: str): 
+        return self.decode_url(link_base.split(self.model.const.ARRAY_TYPE_INFORMATION_HTML[1])[1]) # type: ignore
+    
+    def get_tel(self, link_base: str): 
+        return self.decode_url(link_base.split(self.model.const.ARRAY_TYPE_INFORMATION_HTML[0])[1]) # type: ignore
