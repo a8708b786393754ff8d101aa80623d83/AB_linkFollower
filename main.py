@@ -14,7 +14,7 @@ from src.view import view_link as v
     3: il identifie les liens qui appartient a cette page
     4: il parcour les liens est ainsi de suite 
 """
-url = 'https://ecurie-des-4-chemins.fr/'
+url = 'https://www.geeksforgeeks.org/python-regex-re-search-vs-re-findall/'
 
 controller = c.ControllerLink(m.ModelLink, v.ViewBase)
 view = v.ViewLink()
@@ -26,7 +26,8 @@ if not controller.requests_link(url) is None:
                 view.script_javascript(link)
             else:
                 link_base = controller.model.get_url_base(link)
-                if controller.is_link(link_base):
-                    view.link_internal(link)
-                else:
-                    view.link_external(link)
+                if controller.model.is_link_internal(link_base): 
+                    view.link_internal(link_base)
+                    
+                elif not controller.model.is_link_external(link_base) is None: 
+                    view.link_external(link_base)
