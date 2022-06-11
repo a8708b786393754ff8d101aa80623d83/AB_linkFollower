@@ -32,6 +32,12 @@ class ModelLink(ModelBase):
 
         return re.search('https?:\/\/', str(url))
 
+    def is_tel(self, url: str): 
+        if url.startswith('tel:'): 
+            return url.split('tel:')[1]
+        
+        return False 
+
     def get_url_base(self, url):
         try:
             pattern = re.compile(str(url))
