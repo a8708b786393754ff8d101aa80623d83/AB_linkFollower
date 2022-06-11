@@ -14,7 +14,7 @@ from src.view import view_link as v
     3: il identifie les liens qui appartient a cette page
     4: il parcour les liens est ainsi de suite 
 """
-url = 'https://www.geeksforgeeks.org/python-regex-re-search-vs-re-findall/'
+url = 'https://www.youtube.com/watch?v=hD4SPISLQTA'
 
 controller = c.ControllerLink(m.ModelLink, v.ViewBase)
 view = v.ViewLink()
