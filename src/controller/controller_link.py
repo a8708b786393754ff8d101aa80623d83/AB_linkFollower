@@ -50,6 +50,7 @@ class ControllerLink(ControllerBase):
         return data
 
     def get_mail(self, link_base: str): 
-        return link_base.startswith(self.model.const[1])
+        return self.decode_url(link_base.split(self.model.const.ARRAY_TYPE_INFORMATION_HTML[1])[1]) # type: ignore
     
-    
+    def get_tel(self, link_base: str): 
+        return self.decode_url(link_base.split(self.model.const.ARRAY_TYPE_INFORMATION_HTML[0])[1]) # type: ignore
