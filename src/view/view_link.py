@@ -31,10 +31,13 @@ class ViewLink(ViewBase):
         print(self.fore.CYAN, link, self.fore.RESET)
         
     def stats(self): 
-        print(self.back.LIGHTMAGENTA_EX, 
-            self.fore.GREEN,'tel:',self.tel,
-            self.fore.CYAN,'mail:',self.mail,
-            self.fore.YELLOW,'script:',self.script,
-            self.fore.RED,'internal:',self.internal, 
-            self.fore.BLUE,'external:',self.external
+        print(
+            self.back.LIGHTBLACK_EX, 
+            self.fore.WHITE,'tel:',self.tel,
+            'mail:',self.mail,
+            'script:',self.script,
+            'internal:',self.internal, 
+            'external:',self.external, 
+            self.fore.RESET,
+            self.back.RESET
             )
