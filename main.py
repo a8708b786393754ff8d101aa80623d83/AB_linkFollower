@@ -1,4 +1,4 @@
-#! /usr/local/bin/python3.10
+#! /usr/bin/python3
 from src.controller import controller_link as c
 from src.model import model_link as m
 from src.view import view_link as v
