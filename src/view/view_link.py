@@ -18,9 +18,6 @@ class ViewLink(ViewBase):
         super().__init__()
         self.internal = 0
         self.external = 0
-        self.script = 0
-        self.tel = 0
-        self.mail = 0
 
     def link_internal(self, link):
         """Méthode pour afficher les liens interne de couleur rouge, elle ajoute 1 au compteur de lien interne.
@@ -42,44 +39,14 @@ class ViewLink(ViewBase):
         self.external += 1
         print(self.fore.BLUE, link, self.fore.RESET)
 
-    def script_javascript(self, script):
-        """Méthode pour afficher les script javascript de couleur jaune, elle ajoute 1 au compteur de script.
-
-        Args:
-            script (bs4.Element.Tag|str): lien/script javascript.
-        """
-
-        self.script += 1
-        print(self.fore.YELLOW, script, self.fore.RESET)
-
-    def link_tel(self, link_base):
-        """Méthode pour afficher les liens de numero de telephone de couleur vert, elle ajoute 1 au compteur de lien numero de telephone.
-
-        Args:
-            link_base (bs4.Element.Tag|str): lien de numero de telephone.
-        """
-
-        self.tel += 1
-        print(self.fore.GREEN, link_base, self.fore.RESET)
-
-    def link_mail(self, link):
-        """Méthode pour afficher les liens d'adresse emails de couleur cyan, elle ajoute 1 au compteur d'adresse email.
-
-        Args:
-            link (bs4.Element.Tag|str): adresse email.
-        """
-
-        self.mail += 1
-        print(self.fore.CYAN, link, self.fore.RESET)
-
-    def stats(self):
+    def stats(self, tel: int, mail: int, script: int):
         """Affiche les statistiques, affcihe le nombre de compteur avec de couleur de fond gris est le texte ne blanc."""
 
         print(
             self.back.LIGHTBLACK_EX,
-            self.fore.WHITE, 'tel:', self.tel,
-            'mail:', self.mail,
-            'script:', self.script,
+            self.fore.WHITE, 'tel:', tel,
+            'mail:', mail,
+            'script:', script,
             'internal:', self.internal,
             'external:', self.external,
             self.fore.RESET,

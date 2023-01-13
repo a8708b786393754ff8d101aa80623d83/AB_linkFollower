@@ -1,37 +1,68 @@
 #! /usr/bin/python3
 import args
 import constant as const
+
 from src.controller.controller_link import ControllerLink
+from src.controller.controller_link_mail import ControllerLinkMail
+from src.controller.controller_link_script import ControllerLinkScript
+from src.controller.controller_link_tel import ControllerLinkTel
+
 from src.model.model_link import ModelLink
+from src.model.model_link_tel import ModelLinkTel
+from src.model.model_link_mail import ModelLinkEmail
+from src.model.model_link_script import ModelLinkScript
+
 from src.view.view_base import ViewBase
 from src.view.view_link import ViewLink
+from src.view.view_link_mail import ViewLinkMail
+from src.view.view_link_script import ViewLinkScript
+from src.view.view_link_tel import ViewLinkTel
+
 
 arg = args.arguments()
 
 
-controller = ControllerLink(ModelLink, ViewBase)
-controller.model.set_path_link(const.FOLDER_DATA + const.FILE_LINK_SAVING)
+controller_link = ControllerLink(ModelLink, ViewBase)
+controller_link_mail = ControllerLinkMail(ModelLinkEmail, ViewLinkMail)
+controller_link_tel = ControllerLinkTel(ModelLinkTel, ViewLinkTel)
+controller_link_script = ControllerLinkScript(ModelLinkScript, ViewLinkScript)
 
-view = ViewLink()
+view_link = ViewLink()
+view_link_tel = ViewLinkTel()
+view_link_script = ViewLinkScript()
+view_link_mail = ViewLinkMail()
 
-if not controller.requests_link(arg.url) is None:
-    for keys, links in controller.get_links(arg.url).items():
+controller_link.model.set_path_link(const.FOLDER_DATA + const.FILE_LINK_SAVING)
+
+data = {
+    'css': controller_link.get_links_css(arg.url),
+    'img': controller_link.get_links_img(arg.url),
+    'js': controller_link_script.get_links_js(arg.url),
+    'a': controller_link.get_links_tag_a(arg.url)
+}
+
+
+if not controller_link.requests_link(arg.url) is None:
+    for keys, links in data.items():
         for link in links:  # type: ignore
-            if controller.model.is_script(link, const.ARRAY_TYPE_SCRIPT):
-                view.script_javascript(link)
+            if controller_link_script.model.is_script(link, const.ARRAY_TYPE_SCRIPT):
+                view_link_script.script_javascript(link)
             else:
-                link_base = controller.model.get_url_base(link, const.ARRAY_CLASSES_HTML)
+                link_base = controller_link.model.get_url_base(
+                    link, const.ARRAY_CLASSES_HTML)
 
-                if controller.model.is_tel(link_base):
-                    view.link_tel(controller.get_tel(link_base, const.HTML_TEL))
-                    
-                elif controller.model.is_mail(link_base):
-                    view.link_mail(controller.get_mail(link_base, const.HTML_MAIL))
+                if controller_link_tel.model.is_tel(link_base):
+                    view_link_tel.link_tel(
+                        controller_link_tel.get_tel(link_base, const.HTML_TEL))
 
-                elif controller.model.is_link_internal(link_base):
-                    view.link_internal(link_base)
+                elif controller_link_mail.model.is_mail(link_base):
+                    view_link_mail.link_mail(
+                        controller_link_tel.get_mail(link_base, const.HTML_MAIL))
 
-                elif not controller.model.is_link_external(link_base) is None:
-                    view.link_external(link_base)
+                elif controller_link.model.is_link_internal(link_base):
+                    view_link.link_internal(link_base)
 
-view.stats()
+                elif not controller_link.model.is_link_external(link_base) is None:
+                    view_link.link_external(link_base)
+
+view_link.stats(view_link_tel.tel, view_link_mail.mail, view_link_script.script)
