@@ -12,19 +12,17 @@ class ModelLink(ModelBase):
 
     """
 
-    def __init__(self):
-        """Méthode __init__, elle initalise l'attributs fichier des liens. """
-
+    def __init__(self) -> None:
         super().__init__()
-        self.path_link_file = self.const.FOLDER_DATA + self.const.FILE_LINK_SAVING
+        self.path_link_file = None
 
-    def set_path_link(self, filename: str): 
+    def set_path_link(self, filename: str):
         """Set path link in attribute
 
         Args:
             filename (str): path file link saving
         """
-        
+
         self.path_link_file = filename
 
     def save_links(self, data: dict):
