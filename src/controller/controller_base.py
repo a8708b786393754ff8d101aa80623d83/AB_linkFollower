@@ -1,3 +1,4 @@
+from urllib.parse import unquote
 import requests
 
 class ControllerBase:
@@ -41,3 +42,14 @@ class ControllerBase:
             if r.ok:
                 self.data['url'] = url  # type: ignore
                 return r
+    def decode_url(self, element: str):
+        """Decode les element encode en url.
+
+        Args:
+            element (str): element a decoder.
+
+        Returns:
+            str: element decoder.
+        """
+        
+        return unquote(element)

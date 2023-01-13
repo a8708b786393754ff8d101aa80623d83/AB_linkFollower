@@ -1,4 +1,3 @@
-from urllib.parse import unquote
 from bs4 import BeautifulSoup
 
 from .controller_base import ControllerBase
@@ -9,18 +8,6 @@ class ControllerLink(ControllerBase):
     
     def __init__(self, model, view):
         super().__init__(model, view)
-
-    def decode_url(self, element: str):
-        """Decode les element encode en url.
-
-        Args:
-            element (str): element a decoder.
-
-        Returns:
-            str: element decoder.
-        """
-        
-        return unquote(element)
 
     def get_links_css(self, url: str):
         """Recupere tout les balises de tag style.
@@ -106,30 +93,3 @@ class ControllerLink(ControllerBase):
 
         return data
 
-    def get_mail(self, link_base: str, type_mail: str):
-        """Donne l'email contenue dans la balise. 
-
-        Args:
-            link_base (str): liens. 
-            type_mail (str): html mail
-
-        Returns:
-            str: email decoder.
-        """
-
-        # type: ignore
-        return self.decode_url(link_base.split(type_mail)[1])
-
-    def get_tel(self, link_base: str, type_tel: str):
-        """Donne le numero de téléphone contenue dans la balise. 
-
-        Args:
-            link_base (str): liens. 
-            type_tel (str): html tel
-
-        Returns:
-            str: numeros de telephone decoder.
-        """
-
-        # type: ignore
-        return self.decode_url(link_base.split(type_tel)[1])
