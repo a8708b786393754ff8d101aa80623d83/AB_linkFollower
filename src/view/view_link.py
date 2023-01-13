@@ -39,14 +39,14 @@ class ViewLink(ViewBase):
         self.external += 1
         print(self.fore.BLUE, link, self.fore.RESET)
 
-    def stats(self):
+    def stats(self, tel: int, mail: int, script: int):
         """Affiche les statistiques, affcihe le nombre de compteur avec de couleur de fond gris est le texte ne blanc."""
 
         print(
             self.back.LIGHTBLACK_EX,
-            self.fore.WHITE, 'tel:', self.tel,
-            'mail:', self.mail,
-            'script:', self.script,
+            self.fore.WHITE, 'tel:', tel,
+            'mail:', mail,
+            'script:', script,
             'internal:', self.internal,
             'external:', self.external,
             self.fore.RESET,
