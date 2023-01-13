@@ -18,9 +18,6 @@ class ViewLink(ViewBase):
         super().__init__()
         self.internal = 0
         self.external = 0
-        self.script = 0
-        self.tel = 0
-        self.mail = 0
 
     def link_internal(self, link):
         """Méthode pour afficher les liens interne de couleur rouge, elle ajoute 1 au compteur de lien interne.
