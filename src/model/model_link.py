@@ -97,7 +97,7 @@ class ModelLink(ModelBase):
 
         return url.startswith('mailto:')
 
-    def get_url_base(self, link):
+    def get_url_base(self, link, class_html: list):
         """Méthode qui fait utilise les regex pour voir si on peut recuperer le lien de base. 
 
         Args:
@@ -112,8 +112,7 @@ class ModelLink(ModelBase):
         except:
             pass  # trouver quelle erruer extactement
         else:
-            for prefix in self.const.ARRAY_CLASSES_HTML:
-
+            for prefix in class_html:
                 # regarde si le pattern(link) contient le prefix
                 if not re.match(pattern, prefix):
                     if not link.get(prefix) is None:
