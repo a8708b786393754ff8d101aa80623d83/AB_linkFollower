@@ -54,26 +54,3 @@ class ControllerLink(ControllerBase):
         if not resp is None:
             return BeautifulSoup(resp.text, 'lxml').find_all('a')
 
-    def get_links(self, url: str):
-        """Donne tout les types de liens.
-
-        Args:
-            url (str): url principale ou seras chercher les liens qui sont dans la page. 
-
-        Returns:
-            dict: Tableaux d'urls avec la clef.
-        """
-
-        data = {
-            'css': None,
-            'img': None,
-            'js': None,
-            'a': None
-        }
-
-        data['css'] = self.get_links_css(url)  # type: ignore
-        data['img'] = self.get_links_img(url)  # type: ignore
-        data['js'] = self.get_links_js(url)  # type: ignore
-        data['a'] = self.get_links_tag_a(url)  # type: ignore
-
-        return data

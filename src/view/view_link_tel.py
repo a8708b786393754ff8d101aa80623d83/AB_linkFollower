@@ -1,6 +1,6 @@
-from .view_link import ViewLink
+from .view_base import ViewBase
 
-class ViewLinkTel(ViewLink):
+class ViewLinkTel(ViewBase):
     def __init__(self):
         super().__init__()
 

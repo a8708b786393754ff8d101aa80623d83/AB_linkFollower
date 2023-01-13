@@ -1,8 +1,8 @@
-from .controller_link import ControllerLink
+from .controller_base import ControllerBase
 from bs4 import BeautifulSoup
 
 
-class ControllerLinkScript(ControllerLink):
+class ControllerLinkScript(ControllerBase):
     def __init__(self, model, view):
         super().__init__(model, view)
 
