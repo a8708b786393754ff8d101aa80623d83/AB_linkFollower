@@ -1,7 +1,7 @@
 from .controller_base import ControllerBase
 
 
-class ControllerLinkMail(ControllerBase): 
+class ControllerLinkMail(ControllerBase):
     def __init__(self, model, view):
         super().__init__(model, view)
 

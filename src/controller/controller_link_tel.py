@@ -1,6 +1,7 @@
-from .controller_base import ControllerBase 
+from .controller_base import ControllerBase
 
-class ControllerLinkTel(ControllerBase): 
+
+class ControllerLinkTel(ControllerBase):
     def __init__(self, model, view):
         super().__init__(model, view)
 
@@ -17,4 +18,3 @@ class ControllerLinkTel(ControllerBase):
 
         # type: ignore
         return self.decode_url(link_base.split(type_tel)[1])
-    

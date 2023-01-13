@@ -5,7 +5,7 @@ from .controller_base import ControllerBase
 
 class ControllerLink(ControllerBase):
     """Controller pour tout ce qui est liens, elle contient otut les methode pour effectuer des changement sur les liens."""
-    
+
     def __init__(self, model, view):
         super().__init__(model, view)
 
@@ -19,25 +19,10 @@ class ControllerLink(ControllerBase):
         Returns:
            list: Tableaux des balises css.
         """
-        
+
         resp = self.requests_link(url)
         if not resp is None:
             return BeautifulSoup(resp.text, 'lxml').find_all('link', {'rel': 'stylesheet'})
-
-    def get_links_js(self, url: str):
-        """Recupere tout les balises de tag script.
-
-        Args:
-            url (str): url principale ou seras chercher les liens qui sont dans la page. 
-
-
-        Returns:
-           list: Tableaux des balises javascript.
-        """
-        
-        resp = self.requests_link(url)
-        if not resp is None:
-            return BeautifulSoup(resp.text, 'lxml').find_all('script')
 
     def get_links_img(self, url: str):
         """Recupere tout les balises de tag img.
@@ -49,7 +34,7 @@ class ControllerLink(ControllerBase):
         Returns:
            list: Tableaux des balises image.
         """
-        
+
         resp = self.requests_link(url)
         if not resp is None:
             return BeautifulSoup(resp.text, 'lxml').find_all('img')
@@ -64,7 +49,7 @@ class ControllerLink(ControllerBase):
         Returns:
            list: Tableaux des balises liens.
         """
-        
+
         resp = self.requests_link(url)
         if not resp is None:
             return BeautifulSoup(resp.text, 'lxml').find_all('a')
@@ -92,4 +77,3 @@ class ControllerLink(ControllerBase):
         data['a'] = self.get_links_tag_a(url)  # type: ignore
 
         return data
-
