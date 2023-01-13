@@ -1,6 +1,6 @@
-from .model_base import ModelBase
+from .model_link import ModelLink
 
-class ModeLinkEmail(ModelBase): 
+class ModelLinkEmail(ModelLink): 
     def __init__(self) -> None:
         super().__init__()
 
