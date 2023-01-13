@@ -1,4 +1,5 @@
 import json
+import re
 from .model_base import ModelBase
 
 
@@ -34,22 +35,6 @@ class ModelLink(ModelBase):
         with open(self.path_link_file, 'w') as f:
             json.dump(data, f)
 
-    def is_script(self, link, type_script: list):
-        """Méthode qui determine si le lien est un script javascript ou une balise script.
-
-        Args:
-            link (_type_): liens 
-            type_script (list): array type script
-
-        Returns:
-            True| str: True si c'est uen balise script, sinon un lien. 
-        """
-
-        if link.name == 'script':
-            return True
-
-        return link.get('type') in type_script and link.get('src') is None and link.name == 'script'
-
     def is_link_internal(self, link: str):
         """Determine si le lien est interne. 
         Args: 
@@ -71,27 +56,3 @@ class ModelLink(ModelBase):
         """
 
         return re.search('https?:\/\/', str(url))
-
-    def is_tel(self, url: str):
-        """Détermine si c'est lien contien un numero de télephone. 
-
-        Args:
-            url (str): lien
-
-        Returns:
-            bool: True si il contient un numeros de télephone, sinon False 
-        """
-
-        return url.startswith('tel:')
-
-    def is_mail(self, url: str):
-        """Détermine si c'est lien contien une adresse email. 
-
-        Args:
-            url (str): lien
-
-        Returns:
-            bool: True si il contient une adresse email, sinon False 
-        """
-
-        return url.startswith('mailto:')
