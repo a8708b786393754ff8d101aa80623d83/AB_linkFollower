@@ -106,28 +106,30 @@ class ControllerLink(ControllerBase):
 
         return data
 
-    def get_mail(self, link_base: str):
+    def get_mail(self, link_base: str, type_mail: str):
         """Donne l'email contenue dans la balise. 
 
         Args:
             link_base (str): liens. 
+            type_mail (str): html mail
 
         Returns:
             str: email decoder.
         """
 
         # type: ignore
-        return self.decode_url(link_base.split(self.model.const.ARRAY_TYPE_INFORMATION_HTML[1])[1])
+        return self.decode_url(link_base.split(type_mail)[1])
 
-    def get_tel(self, link_base: str):
+    def get_tel(self, link_base: str, type_tel: str):
         """Donne le numero de téléphone contenue dans la balise. 
 
         Args:
             link_base (str): liens. 
+            type_tel (str): html tel
 
         Returns:
             str: numeros de telephone decoder.
         """
 
         # type: ignore
-        return self.decode_url(link_base.split(self.model.const.ARRAY_TYPE_INFORMATION_HTML[0])[1])
+        return self.decode_url(link_base.split(type_tel)[1])

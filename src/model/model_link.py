@@ -12,11 +12,18 @@ class ModelLink(ModelBase):
 
     """
 
-    def __init__(self):
-        """Méthode __init__, elle initalise l'attributs fichier des liens. """
-
+    def __init__(self) -> None:
         super().__init__()
-        self.path_link_file = self.const.FOLDER_DATA + self.const.FILE_LINK_SAVING
+        self.path_link_file = None
+
+    def set_path_link(self, filename: str):
+        """Set path link in attribute
+
+        Args:
+            filename (str): path file link saving
+        """
+
+        self.path_link_file = filename
 
     def save_links(self, data: dict):
         """Enregistre les liens dans un fichier JSON.
@@ -28,11 +35,12 @@ class ModelLink(ModelBase):
         with open(self.path_link_file, 'w') as f:
             json.dump(data, f)
 
-    def is_script(self, link):
+    def is_script(self, link, type_script: list):
         """Méthode qui determine si le lien est un script javascript ou une balise script.
 
         Args:
             link (_type_): liens 
+            type_script (list): array type script
 
         Returns:
             True| str: True si c'est uen balise script, sinon un lien. 
@@ -41,7 +49,7 @@ class ModelLink(ModelBase):
         if link.name == 'script':
             return True
 
-        return link.get('type') in self.const.ARRAY_TYPE_SCRIPT and link.get('src') is None and link.name == 'script'
+        return link.get('type') in type_script and link.get('src') is None and link.name == 'script'
 
     def is_link_internal(self, link: str):
         """Determine si le lien est interne. 
@@ -89,7 +97,7 @@ class ModelLink(ModelBase):
 
         return url.startswith('mailto:')
 
-    def get_url_base(self, link):
+    def get_url_base(self, link, class_html: list):
         """Méthode qui fait utilise les regex pour voir si on peut recuperer le lien de base. 
 
         Args:
@@ -104,8 +112,7 @@ class ModelLink(ModelBase):
         except:
             pass  # trouver quelle erruer extactement
         else:
-            for prefix in self.const.ARRAY_CLASSES_HTML:
-
+            for prefix in class_html:
                 # regarde si le pattern(link) contient le prefix
                 if not re.match(pattern, prefix):
                     if not link.get(prefix) is None:
