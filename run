@@ -2,21 +2,21 @@
 import args
 import constant as const
 
-from src.controller.controller_link import ControllerLink
-from src.controller.controller_link_mail import ControllerLinkMail
-from src.controller.controller_link_script import ControllerLinkScript
-from src.controller.controller_link_tel import ControllerLinkTel
+from link_follower.controller.controller_link import ControllerLink
+from link_follower.controller.controller_link_mail import ControllerLinkMail
+from link_follower.controller.controller_link_script import ControllerLinkScript
+from link_follower.controller.controller_link_tel import ControllerLinkTel
 
-from src.model.model_link import ModelLink
-from src.model.model_link_tel import ModelLinkTel
-from src.model.model_link_mail import ModelLinkEmail
-from src.model.model_link_script import ModelLinkScript
+from link_follower.model.model_link import ModelLink
+from link_follower.model.model_link_tel import ModelLinkTel
+from link_follower.model.model_link_mail import ModelLinkEmail
+from link_follower.model.model_link_script import ModelLinkScript
 
-from src.view.view_base import ViewBase
-from src.view.view_link import ViewLink
-from src.view.view_link_mail import ViewLinkMail
-from src.view.view_link_script import ViewLinkScript
-from src.view.view_link_tel import ViewLinkTel
+from link_follower.view.view_base import ViewBase
+from link_follower.view.view_link import ViewLink
+from link_follower.view.view_link_mail import ViewLinkMail
+from link_follower.view.view_link_script import ViewLinkScript
+from link_follower.view.view_link_tel import ViewLinkTel
 
 
 arg = args.arguments()
